@@ -1,17 +1,40 @@
-# network-security-labs
+<p align="center">
+  <img src="assets/banner.svg" alt="network-security-labs" width="100%" />
+</p>
 
-![Cisco Packet Tracer](https://img.shields.io/badge/Cisco-Packet%20Tracer%209.0-1BA0D7?logo=cisco&logoColor=white)
-![CCNA](https://img.shields.io/badge/CCNA-in%20progress-0A66C2)
-![License](https://img.shields.io/badge/license-MIT-lightgrey)
+<p align="center">
+  <img src="https://img.shields.io/badge/Cisco-Packet%20Tracer%209.0-1BA0D7?style=flat-square&logo=cisco&logoColor=white" alt="Cisco Packet Tracer 9.0" />
+  <img src="https://img.shields.io/badge/CCNA-200--301-0B1F3A?style=flat-square&logo=cisco&logoColor=white" alt="CCNA 200-301" />
+  <img src="https://img.shields.io/badge/labs-2-1BA0D7?style=flat-square" alt="2 labs" />
+  <img src="https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square" alt="MIT license" />
+</p>
 
 Cisco routing, switching and network security labs built in Packet Tracer. Each lab includes the topology, addressing plan, device configs, captured verification output and troubleshooting notes.
 
 ## Labs
 
-| Lab | Description | Topics |
-|-----|-------------|--------|
-| [01-two-site-ospf](labs/01-two-site-ospf) | Two sites connected over a point-to-point link, routed with OSPF, then hardened | VLSM, OSPF area 0, DR/BDR, SSHv2, VTY ACL, login block-for, OSPF MD5 auth |
-| [02-vlan-router-on-a-stick](labs/02-vlan-router-on-a-stick) | Two VLANs on one switch with inter-VLAN routing and DHCP on the router | VLANs, 802.1Q trunking, subinterfaces, DHCP pools |
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="labs/01-two-site-ospf"><img src="assets/lab01-card.png" alt="Lab 01 topology" width="100%" /></a>
+      <br/>
+      <b><a href="labs/01-two-site-ospf">01 - Two-site OSPF + hardening</a></b>
+      <br/>
+      <sub>Two sites over a point-to-point link, routed with OSPF, then hardened.</sub>
+      <br/>
+      <sub><code>VLSM</code> <code>OSPF area 0</code> <code>DR/BDR</code> <code>SSHv2</code> <code>VTY ACL</code> <code>login block-for</code> <code>OSPF MD5</code></sub>
+    </td>
+    <td width="50%" valign="top">
+      <a href="labs/02-vlan-router-on-a-stick"><img src="assets/lab02-card.png" alt="Lab 02 topology" width="100%" /></a>
+      <br/>
+      <b><a href="labs/02-vlan-router-on-a-stick">02 - VLANs + router-on-a-stick + DHCP</a></b>
+      <br/>
+      <sub>Two VLANs on one switch, inter-VLAN routing and DHCP on the router.</sub>
+      <br/>
+      <sub><code>VLANs</code> <code>802.1Q</code> <code>subinterfaces</code> <code>DHCP pools</code></sub>
+    </td>
+  </tr>
+</table>
 
 ## Repository layout
 
