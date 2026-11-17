@@ -1,0 +1,27 @@
+! SW (Cisco 2960-24TT) - VLANs, access ports and trunk to the router
+enable
+configure terminal
+hostname SW
+vlan 10
+ name SALES
+ exit
+vlan 20
+ name IT
+ exit
+interface FastEthernet0/1
+ description PC-Sales
+ switchport mode access
+ switchport access vlan 10
+ exit
+interface FastEthernet0/2
+ description PC-IT
+ switchport mode access
+ switchport access vlan 20
+ exit
+interface GigabitEthernet0/1
+ description Trunk to RTR
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20
+ exit
+end
+write memory

@@ -1,0 +1,63 @@
+Verification output - captured from the running lab in Cisco Packet Tracer 9.0
+(configs from ../configs pasted as-is)
+
+================================ SW ================================
+SW#show vlan brief
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/3, Fa0/4, Fa0/5, Fa0/6
+                                                Fa0/7, Fa0/8, Fa0/9, Fa0/10
+                                                Fa0/11, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/21, Fa0/22
+                                                Fa0/23, Fa0/24, Gig0/2
+10   SALES                            active    Fa0/1
+20   IT                               active    Fa0/2
+1002 fddi-default                     active
+1003 token-ring-default               active
+1004 fddinet-default                  active
+1005 trnet-default                    active
+
+SW#show interfaces trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Gig0/1      on           802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Gig0/1      10,20
+
+Port        Vlans allowed and active in management domain
+Gig0/1      10,20
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gig0/1      10,20
+
+================================ RTR ===============================
+RTR#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0/0   unassigned      YES unset  up                    up
+GigabitEthernet0/0/0.10 192.168.10.1   YES manual up                    up
+GigabitEthernet0/0/0.20 192.168.20.1   YES manual up                    up
+GigabitEthernet0/0/1   unassigned      YES unset  administratively down down
+GigabitEthernet0/0/2   unassigned      YES unset  administratively down down
+Vlan1                  unassigned      YES unset  administratively down down
+
+RTR#show ip dhcp binding
+IP address       Client-ID/              Lease expiration        Type
+                 Hardware address
+192.168.10.11    00D0.D3EA.E16C           --                     Automatic
+192.168.20.11    00E0.F9A8.9EE9           --                     Automatic
+
+============================= PC-Sales =============================
+C:\>ping 192.168.20.11
+
+Pinging 192.168.20.11 with 32 bytes of data:
+
+Request timed out.
+Reply from 192.168.20.11: bytes=32 time<1ms TTL=127
+Reply from 192.168.20.11: bytes=32 time<1ms TTL=127
+Reply from 192.168.20.11: bytes=32 time<1ms TTL=127
+
+Ping statistics for 192.168.20.11:
+    Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+
+Note: first request lost to ARP; TTL=127 = one router hop (inter-VLAN routing via RTR).

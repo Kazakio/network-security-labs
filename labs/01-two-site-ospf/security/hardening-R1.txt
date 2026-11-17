@@ -1,0 +1,39 @@
+! R1 hardening - apply AFTER configs\R1.txt (adds security only)
+! Lab passwords below are examples: change them for real equipment.
+! Apply the OSPF part on R1 and R2 within a minute of each other.
+enable
+configure terminal
+security passwords min-length 10
+enable secret R1-Enable!2026
+username admin privilege 15 secret R1-Admin!2026
+service password-encryption
+login block-for 120 attempts 3 within 60
+banner motd #Authorized access only. Activity is monitored and logged.#
+ip domain-name lab.local
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+ip ssh time-out 60
+ip ssh authentication-retries 3
+ip access-list standard MGMT-ONLY
+ permit 192.168.10.0 0.0.0.63
+ permit 192.168.10.64 0.0.0.31
+ deny any
+ exit
+line vty 0 4
+ login local
+ transport input ssh
+ access-class MGMT-ONLY in
+ exec-timeout 5 0
+ exit
+line console 0
+ exec-timeout 5 0
+ logging synchronous
+ exit
+service timestamps log datetime msec
+logging buffered 16384
+interface GigabitEthernet0/0/1
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 1 md5 OspfLab!Key1
+ exit
+end
+write memory

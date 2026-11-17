@@ -1,0 +1,42 @@
+! R1 configuration (ISR4331) - OSPF area 0
+!  Gi0/0/0 -> S1 Sales LAN   192.168.10.1/26
+!  Gi0/0/1 -> R2 link        192.168.10.97/30
+! Paste everything below into R1's CLI tab in Packet Tracer.
+enable
+configure terminal
+hostname R1
+no ip domain-lookup
+enable secret class
+banner motd #Authorized access only#
+line console 0
+ password cisco
+ login
+ logging synchronous
+ exit
+line vty 0 4
+ password cisco
+ login
+ transport input telnet
+ exit
+service password-encryption
+!
+interface GigabitEthernet0/0/0
+ description LAN to S1 (Sales)
+ ip address 192.168.10.1 255.255.255.192
+ no shutdown
+ exit
+!
+interface GigabitEthernet0/0/1
+ description Link to R2
+ ip address 192.168.10.97 255.255.255.252
+ no shutdown
+ exit
+!
+router ospf 1
+ router-id 1.1.1.1
+ network 192.168.10.0 0.0.0.63 area 0
+ network 192.168.10.96 0.0.0.3 area 0
+ passive-interface GigabitEthernet0/0/0
+ exit
+end
+write memory
